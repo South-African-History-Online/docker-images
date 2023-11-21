@@ -40,10 +40,8 @@ RUN \
         php${PHP_VERSION}-gd \
         php${PHP_VERSION}-msgpack \
         php${PHP_VERSION}-intl \
-        php${PHP_VERSION}-zstd \
         php${PHP_VERSION}-redis \
         php${PHP_VERSION}-igbinary \
-        php${PHP_VERSION}-lz4 \
         php${PHP_VERSION}-curl \
         php${PHP_VERSION}-opcache \
         php${PHP_VERSION}-xml \
