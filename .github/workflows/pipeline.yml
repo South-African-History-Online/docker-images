@@ -13,7 +13,6 @@ permissions:
   contents: read
 
 env:
-  REGISTRY: docker.com
   IMAGE_REPO: sahistory
 
 jobs:
@@ -29,7 +28,6 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
-          registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
@@ -41,7 +39,7 @@ jobs:
 
       - name: Build nginx
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/nginx:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/nginx/nginx:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -73,7 +71,7 @@ jobs:
 
       - name: Build jobs
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/jobs:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/jobs/jobs:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -106,7 +104,7 @@ jobs:
 
       - name: Build php-fpm
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/phpfpm:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/fpm/fpm:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
