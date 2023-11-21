@@ -14,6 +14,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
+  IMAGE_REPO: ${{ github.repository }}
 
 jobs:
   build:
@@ -40,7 +41,7 @@ jobs:
 
       - name: Build nginx
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/docker/nginx:latest"
+          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/nginx:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -51,7 +52,7 @@ jobs:
 
       - name: Build jobs
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/docker/jobs:latest"
+          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/jobs:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -63,7 +64,7 @@ jobs:
 
       - name: Build php-fpm
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/docker/phpfpm:latest"
+          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/phpfpm:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -75,7 +76,7 @@ jobs:
 
       - name: Build node
         run: |
-          IMAGE_NAME="${{ env.REGISTRY }}/docker/node:latest"
+          IMAGE_NAME="${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}/node:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
