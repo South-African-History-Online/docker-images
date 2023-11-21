@@ -76,7 +76,7 @@ jobs:
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
             --build-arg PHP_VERSION=7.4 \
-            --push \
+            --push \
             -f jobs.Dockerfile \
             .
 
