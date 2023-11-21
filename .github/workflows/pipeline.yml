@@ -14,7 +14,6 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_REPO: ${{ github.repository }}
 
 jobs:
   build:
@@ -38,6 +37,11 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
+      - name: Sort naming case (Basically set everything to lowercase...)
+        run: |
+          echo IMAGE_REPO=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+          echo IMAGE_TAG=$(echo ${{ github.ref }} | tr '[:upper:]' '[:lower:]' | awk '{split($0,a,"/"); print a[3]}') >> $GITHUB_ENV
 
       - name: Build nginx
         run: |
