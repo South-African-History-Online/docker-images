@@ -61,7 +61,6 @@ RUN \
         php${PHP_VERSION}-xmlreader \
         php${PHP_VERSION}-fileinfo \
         php${PHP_VERSION}-uploadprogress \
-        php${PHP_VERSION}-excimer \
     && \
     # Symlink the php-fpm${PHP_VERSION} binary to php-fpm
     if [ ! -f /usr/sbin/php-fpm ]; then ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm; fi && \
