@@ -39,7 +39,7 @@ jobs:
 
       - name: Build nginx
         run: |
-          IMAGE_NAME="${{ env.IMAGE_REPO }}/nginx/nginx:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/nginx:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -71,7 +71,7 @@ jobs:
 
       - name: Build jobs
         run: |
-          IMAGE_NAME="${{ env.IMAGE_REPO }}/jobs/jobs:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/jobs:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
@@ -104,7 +104,7 @@ jobs:
 
       - name: Build php-fpm
         run: |
-          IMAGE_NAME="${{ env.IMAGE_REPO }}/fpm/fpm:latest"
+          IMAGE_NAME="${{ env.IMAGE_REPO }}/fpm:latest"
           docker buildx build \
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
