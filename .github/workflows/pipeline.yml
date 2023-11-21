@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  REGISTRY: hub.docker.com
+  REGISTRY: docker.com
   IMAGE_REPO: sahistory
 
 jobs:
