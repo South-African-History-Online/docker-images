@@ -50,9 +50,8 @@ jobs:
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
             -f nginx.Dockerfile \
+            --push \
             .
-          docker images
-          docker push $IMAGE_NAME
 
   build_jobs:
     name: Build jobs container
@@ -88,10 +87,9 @@ jobs:
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
             --build-arg PHP_VERSION=7.4 \
+            --push \
             -f jobs.Dockerfile \
             .
-          docker images
-          docker push $IMAGE_NAME
 
   build_fpm:
     name: Build FPM
@@ -127,10 +125,9 @@ jobs:
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
             --build-arg PHP_VERSION=7.4 \
+            --push \
             -f php.Dockerfile \
             .
-          docker images
-          docker push $IMAGE_NAME
 
   build_node:
     name: Build node
@@ -166,6 +163,5 @@ jobs:
             --tag $IMAGE_NAME \
             --platform linux/amd64,linux/arm64 \
             -f node.Dockerfile \
+            --push \
             .
-          docker images
-          docker push $IMAGE_NAME
