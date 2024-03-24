@@ -16,6 +16,9 @@ RUN \
         curl \
         procps \
         default-mysql-client \
+        git \
+        zip \
+        unzip \
     && \
     curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.org/php/apt.gpg && \
     sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' && \
@@ -66,6 +69,8 @@ RUN \
     if [ ! -f /usr/sbin/php-fpm ]; then ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm; fi && \
     # Cleanup
     rm -rf /tmp/* /src && \
+    # Install Composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     # Add config for APCu
     echo "apc.enabled=1" >> /etc/php/${PHP_VERSION}/mods-available/apcu.ini && \
     echo "apc.enable_cli=1" >> /etc/php/${PHP_VERSION}/mods-available/apcu.ini && \
