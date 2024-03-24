@@ -13,10 +13,15 @@ RUN \
         patch \
         wget \
         curl \
+        git \
+        zip \
+        unzip \
     && \
     curl -sSLo /usr/share/keyrings/deb.sury.org-nginx.gpg https://packages.sury.org/nginx/apt.gpg && \
     sh -c 'echo "deb [signed-by=/usr/share/keyrings/deb.sury.org-nginx.gpg] https://packages.sury.org/nginx/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/nginx.list' && \
     apt update && \
+    # Install Composer
+    RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     install_packages \
         nginx \
     && \
